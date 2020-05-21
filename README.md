@@ -23,7 +23,7 @@ In this presentation I aim to give a brief overview of T5, explain some of its i
 
 ## Key points from T5 paper
 
-<img src="https://drive.google.com/uc?id=15XQ-H7IdT3DVtbL7fgwYIm08OYWbB8VZ" width="700" height="300" />
+<img src="unified_approach.png" width="700" height="300" />
 
 1. **Treats each NLP problem as a “text-to-text” problem** - input: text, output: text
 
@@ -31,18 +31,18 @@ In this presentation I aim to give a brief overview of T5, explain some of its i
 
 3. **Multiple NLP tasks can live in the same model** - E.g. Q&A, semantic similarity, etc. However, there is a problem called *task interference* where good results on one task can also mean worse results on another task. E.g., a good summarizer may be bad at Q&A and vice versa. All the tasks above can live in the same model, which is how it works with the released T5 models (t5-small, t5-base, etc.)
 
-<img src="https://drive.google.com/uc?id=1-1SXVF78l3EbsuTeDUEv0hUvgfMIch3f" width="700" height="165" />
+<img src="multi_task_model.png" width="700" height="165" />
 
 4. **New dataset: “Colossal Clean Crawled Corpus” (C4)** - a dataset consisting of ~750GB of clean English text scraped from the web. Created with a month of data from the Common Crawl corpus cleaned with a set of heuristics to filter out "unhelpful" text (e.g. offensive language, placeholder text, source code). This is a lot larger than the 13GB of data used for BERT, and 126GB of data used for XLNet.
 
 
 5. **A simple denoising training objective was used for pretraining** Basically, masked language modelling but while considering contiguous masks as a single “span” to predict, and where the final prediction is an actual text sequence containing the answers (represented by “sentinel tokens”). This was compared to a language modeling pre-training objective and results consistently improved.
 
-<img src="https://drive.google.com/uc?id=1iPG7UxZPvy6c2iwixQXYetpTzcHiKDuW" width="500" height="200" />
+<img src="denoising.png" width="500" height="200" />
 
 6. **Full encoder-decoder transformer architecture is used** - this is in contrast to previous architectures that were either encoder based (e.g. BERT), or decoder based (e.g. GPT-2). This was found effective for both generation & classification tasks.
 
-<img src="https://drive.google.com/uc?id=1tUxL_os-pn8JTBSCY6l-9rQI0EMPC5Zz" width="400" height="500" />
+<img src="encoder_decoder.png" width="400" height="500" />
 
 
 ## Key insight
